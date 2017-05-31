@@ -30,7 +30,7 @@ class Favorite {
 
 		// Block with the content of the favorite icon
 		$favorite_content .= '<div class="' . $css_class . '">';
-			if ( self::chek_if_post_is_favorite( get_the_ID(), array() ) ) {
+			if ( self::chek_if_post_is_favorite( get_the_ID(), self::get_favorites() ) ) {
 				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" class="active" data-post-id="' . get_the_ID() . '">';
 			} else {
 				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" data-post-id="' . get_the_ID() . '">';
@@ -63,10 +63,27 @@ class Favorite {
 	 * @return boolean True if the post is on the list of favorites
 	 */
 	public static function chek_if_post_is_favorite( $post_id, $favorites ) {
-		$exist = array_search( $post_id, $favorites );
-		if ( ! is_bool( $exist ) ) {
-			return true;
+		if ( ! empty( $post_id ) && ! empty ( $favorites ) ) {
+			$exist = array_search( $post_id, $favorites );
+			if ( ! is_bool( $exist ) ) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get a list of favorite visitors
+	 *
+	 * @return boolean/array If there are favorites it returns the list, else it returns false
+	 */
+	public static function get_favorites() {
+		if ( ! isset( $_COOKIE['lb_enjoyed'] ) ) {
+			return false;
+		}
+
+		return $_COOKIE['lb_enjoyed'];
 	}
 } // end class LB_Enjoyed_Favorite();
