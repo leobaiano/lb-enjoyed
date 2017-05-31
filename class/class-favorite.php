@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Favorite {
 	/**
 	 * Add icone to bookmark post on post content
+	 *
+	 * @since  0.1.0
 	 */
 	public static function hook_insert_favorite_icon_in_post_content( $content ) {
 		$favorite_content = '';
@@ -61,6 +63,8 @@ class Favorite {
 	 * @param int $post_id Post ID
 	 * @param array $favorites List of favorite user posts saved in the cookie
 	 * @return boolean True if the post is on the list of favorites
+	 *
+	 * @since  0.1.0
 	 */
 	public static function chek_if_post_is_favorite( $post_id, $favorites ) {
 		if ( ! empty( $post_id ) && ! empty ( $favorites ) ) {
@@ -78,6 +82,8 @@ class Favorite {
 	 * Get a list of favorite visitors
 	 *
 	 * @return boolean/array If there are favorites it returns the list, else it returns false
+	 *
+	 * @since  0.1.0
 	 */
 	public static function get_favorites() {
 		if ( ! isset( $_COOKIE['lb-enjoyed'] ) ) {
@@ -92,6 +98,8 @@ class Favorite {
 	 *
 	 * @param string $cookie_lb_enjoyed Cookie with ids of favorite posts
 	 * @return array Array with ids of favorite posts
+	 *
+	 * @since  0.1.0
 	 */
 	public static function convert_cookie_for_array( $cookie_lb_enjoyed ) {
 		return explode( ',', $cookie_lb_enjoyed );
@@ -111,6 +119,8 @@ class Favorite {
 	 * Save Cookie
 	 *
 	 * @param string $favorite_list String with id of the favorite posts separated by commas
+	 *
+	 * @since  0.1.0
 	 */
 	public static function save_cookie( $text ) {
 		if ( isset( $_COOKIE['lb-enjoyed'] ) ) {
