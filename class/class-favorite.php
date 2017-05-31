@@ -48,4 +48,19 @@ class Favorite {
 		}
 		return $content;
 	}
+
+	/**
+	 * Check if post is favorit
+	 *
+	 * @param int $post_id Post ID
+	 * @param array $favorites List of favorite user posts saved in the cookie
+	 * @return boolean True if the post is on the list of favorites
+	 */
+	public static function chek_if_post_is_favorite( $post_id, $favorites ) {
+		$exist = array_search( $post_id, $favorites );
+		if ( ! is_bool( $exist ) ) {
+			return true;
+		}
+		return false;
+	}
 } // end class LB_Enjoyed_Favorite();
