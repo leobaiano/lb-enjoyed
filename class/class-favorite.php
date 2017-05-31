@@ -1,6 +1,6 @@
 <?php
 /**
- * LB Enjoyed Favorite
+ * Favorite
  *
  * @package LB Enjoyed
  * @category Core
