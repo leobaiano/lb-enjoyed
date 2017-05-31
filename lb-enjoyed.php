@@ -87,6 +87,9 @@ class LB_Enjoyed {
 		// Load main CSS
 		wp_enqueue_style( self::$text_domain . '_css_main', plugins_url( '/assets/css/main.css', __FILE__ ), array(), null, 'all' );
 
+		// Load Google Icons
+		wp_enqueue_style( self::$text_domain . '_google_icons', '//fonts.googleapis.com/icon?family=Material+Icons', array(), null, 'all' );
+
 		// Variables to pass to the javascript file through wp_localize_script
 		$variables_for_localize_script = array(
 					'ajax_url'	=> admin_url( 'admin-ajax.php' ),
