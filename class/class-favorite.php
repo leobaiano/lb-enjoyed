@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-class LB_Enjoyed_Favorite {
+class Favorite {
 	/**
 	 * Add icone to bookmark post on post content
 	 */
@@ -28,7 +28,7 @@ class LB_Enjoyed_Favorite {
 		}
 
 		$favorite_content .= '<div class="' . $css_class . '">';
-			$favorite_content .= '<a href="javascript:;" title="' . __e( 'Favorite post', 'lb-enjoyed' ) . '">';
+			$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '">';
 				$favorite_content .= '<i class="material-icons">grade</i>';
 			$favorite_content .= '</a>';
 		$favorite_content .= '</div>';

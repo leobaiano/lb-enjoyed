@@ -55,6 +55,9 @@ class LB_Enjoyed {
 		// Load Class
 		add_action( 'init', array( $this, 'includes' ) );
 
+		// Hook: Filter the_content for add favorite icon in post content
+		add_filter( 'the_content', array('\LBEnjoyed\Favorite', 'hook_insert_favorite_icon_in_post_content' ) );
+
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
