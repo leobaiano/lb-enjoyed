@@ -84,6 +84,16 @@ class Favorite {
 			return false;
 		}
 
-		return $_COOKIE['lb_enjoyed'];
+		return self::convert_cookie_for_array( $_COOKIE['lb_enjoyed'] );
+	}
+
+	/**
+	 * Convert Cookie to array
+	 *
+	 * @param string $cookie_lb_enjoyed Cookie with ids of favorite posts
+	 * @return array Array with ids of favorite posts
+	 */
+	public static function convert_cookie_for_array( $cookie_lb_enjoyed ) {
+		return explode( ',', $cookie_lb_enjoyed );
 	}
 } // end class LB_Enjoyed_Favorite();
