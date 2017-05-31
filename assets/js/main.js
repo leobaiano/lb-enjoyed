@@ -4,5 +4,30 @@
 		var ajax_url = data.ajax_url;
 		var home_url = data.home_url;
 
+		/**
+		 * Add or remove post in favorite list
+		 */
+		$( '.lb_favorite_container a' ).on( 'click', function() {
+			const post_id = $( this ).data( 'post-id' );
+
+			$.ajax({
+				type: "POST",
+				url: ajax_url,
+				data: {
+						"action": 	"add_or_remove_favorite",
+						"post_id": 	post_id
+					},
+				success: function ( response ) {
+					if ( responde.status == 'add ' ) {
+						$( this ).removeClass( 'active' );
+					} else {
+						$( this ).addClass( 'active' );
+					}
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					console.log( textStatus, errorThrown );
+				}
+			});
+		});
 	});
 })(jQuery);

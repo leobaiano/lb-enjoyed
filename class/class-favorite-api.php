@@ -42,7 +42,7 @@ class Favorite_API extends Favorite {
 			$favorites = $post_id;
 
 			// Prepare the data for return
-			$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
+			$response = array( 'status' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
 		} else { // Favorite list already exists
 			// Convert favorites list for array
 			$array_favorites = self::convert_cookie_for_array( $favorites );
@@ -57,12 +57,12 @@ class Favorite_API extends Favorite {
 				}
 
 				// Prepare the data for return
-				$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully removed the list of favorites', 'lb-enjoyed' ) );
+				$response = array( 'status' => 'remove', 'message' => __( 'Post successfully removed the list of favorites', 'lb-enjoyed' ) );
 			} else {
 				$favorites .= ',' . $post_id;
 
 				// Prepare the data for return
-				$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
+				$response = array( 'status' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
 			}
 		}
 		self::save_cookie( $favorites );
