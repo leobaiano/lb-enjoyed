@@ -14,5 +14,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class LB_Enjoyed_Favorite {
+	/**
+	 * Add icone to bookmark post on post content
+	 */
+	public static function hook_insert_favorite_icon_in_post_content( $content ) {
+		$favorite_content = '';
+		$favorite_position = apply_filters( 'lb_enjoyed_location_icon', 'after' );
+		$css_class = apply_filters( 'lb_enjoyed_container_classes_css', array( 'lb_enjoyed_container' ) );
+		$css_class = implode( ' ', $css_class );
 
+		if ( $favorite_position !== 'after' && $favorite_position !== 'before' && $favorite_position !== 'both' ) {
+			$favorite_position = 'after';
+		}
+
+		$favorite_content .= '<div class="' . $css_class . '">';
+			$favorite_content .= '<a href="javascript:;" title="' . __e( 'Favorite post', 'lb-enjoyed' ) . '">';
+				$favorite_content .= '<i class="material-icons">grade</i>';
+			$favorite_content .= '</a>';
+		$favorite_content .= '</div>';
+
+		switch ( $favorite_position ) {
+			case 'before':
+				return $favorite_content . $content;
+				break;
+			case 'both':
+				return $favorite_content . $content . $favorite_content;
+				break;
+			case 'after':
+			default:
+				return $content . $favorite_content;
+				break;
+		}
+		return $content;
+	}
 } // end class LB_Enjoyed_Favorite();

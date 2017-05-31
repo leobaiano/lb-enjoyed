@@ -55,6 +55,7 @@ class LB_Enjoyed {
 		// Load Class
 		add_action( 'init', array( $this, 'includes' ) );
 
+		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
 
@@ -74,8 +75,6 @@ class LB_Enjoyed {
 
 	/**
 	 * Load the plugin text domain for translation.
-	 *
-	 * @return void
 	 */
 	public function load_plugin_textdomain() {
 		load_plugin_textdomain( self::$text_domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -83,9 +82,8 @@ class LB_Enjoyed {
 
 	/**
 	 * Load styles and scripts
-	 *
 	 */
-	public function load_styles_and_scripts(){
+	public function load_styles_and_scripts() {
 		// Load main CSS
 		wp_enqueue_style( self::$text_domain . '_css_main', plugins_url( '/assets/css/main.css', __FILE__ ), array(), null, 'all' );
 

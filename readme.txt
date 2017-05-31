@@ -25,7 +25,11 @@ e.g.
 
 == Frequently Asked Questions ==
 
-= How do I display a list of favorite posts for visitors? =
+= How do I set whether the icon should appear before, after the content, or in both places? =
+
+Answer
+
+= How to add CSS classes to the favorite icon container? =
 
 Answer
 
