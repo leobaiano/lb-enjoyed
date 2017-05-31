@@ -17,7 +17,7 @@ class Favorite_API extends Favorite {
 	/**
 	 * save_or_remove_favorites
 	 */
-	public function save_or_remove_favorites() {
+	public function save_or_remove_favorite() {
 		// Get favorites list in cookie
 		$favorites = self::get_favorites();
 
