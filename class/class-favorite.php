@@ -80,11 +80,11 @@ class Favorite {
 	 * @return boolean/array If there are favorites it returns the list, else it returns false
 	 */
 	public static function get_favorites() {
-		if ( ! isset( $_COOKIE['lb_enjoyed'] ) ) {
+		if ( ! isset( $_COOKIE['lb-enjoyed'] ) ) {
 			return false;
 		}
 
-		return self::convert_cookie_for_array( $_COOKIE['lb_enjoyed'] );
+		return self::convert_cookie_for_array( $_COOKIE['lb-enjoyed'] );
 	}
 
 	/**
@@ -105,5 +105,17 @@ class Favorite {
 	 */
 	public static function convert_array_for_cookie( $array_lb_enjoyed ) {
 		return implode( ',', $array_lb_enjoyed );
+	}
+
+	/**
+	 * Save Cookie
+	 *
+	 * @param string $favorite_list String with id of the favorite posts separated by commas
+	 */
+	public static function save_cookie( $text ) {
+		if ( isset( $_COOKIE['lb-enjoyed'] ) ) {
+			unset( $_COOKIE['lb-enjoyed'] );
+		}
+		@setcookie( 'lb-enjoyed', $text, time() + 3600, "/" );
 	}
 } // end class LB_Enjoyed_Favorite();
