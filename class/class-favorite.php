@@ -19,9 +19,9 @@ class Favorite {
 	 */
 	public static function hook_insert_favorite_icon_in_post_content( $content ) {
 		$favorite_content = '';
-		$favorite_icon = apply_filters( 'lb_enjoyed_icon', 'grade' );
-		$favorite_position = apply_filters( 'lb_enjoyed_location_icon', 'after' );
-		$css_class = apply_filters( 'lb_enjoyed_container_classes_css', array( 'lb_enjoyed_container' ) );
+		$favorite_icon = apply_filters( 'lb_favorite_icon', 'grade' );
+		$favorite_position = apply_filters( 'lb_favorite_location_icon', 'after' );
+		$css_class = apply_filters( 'lb_favorite_container_classes_css', array( 'lb_favorite_container' ) );
 		$css_class = implode( ' ', $css_class );
 
 		if ( $favorite_position !== 'after' && $favorite_position !== 'before' && $favorite_position !== 'both' ) {

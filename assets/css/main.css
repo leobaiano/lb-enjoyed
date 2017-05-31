@@ -1,20 +1,20 @@
-.lb_enjoyed_container {
+.lb_favorite_container {
 	display:block;
 	width:100%;
 	margin:10px 0;
 }
-	.lb_enjoyed_container a {
+	.lb_favorite_container a {
 		font-size:1rem;
 	}
-		.lb_enjoyed_container a:hover {
+		.lb_favorite_container a:hover {
 			text-decoration:none;
 		}
-	.lb_enjoyed_container a i {
+	.lb_favorite_container a i {
 		color:gray;
 		font-size: 1.8rem;
 		vertical-align: middle;
 	}
-	.lb_enjoyed_container a:hover i,
-	.lb_enjoyed_container a.active i {
+	.lb_favorite_container a:hover i,
+	.lb_favorite_container a.active i {
 		color:#f1c40f;
 	}

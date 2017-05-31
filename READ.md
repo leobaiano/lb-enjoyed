@@ -8,12 +8,12 @@ Plugin WordPress: Let your visitors bookmark your favorites posts
 
 = How do I set whether the icon should appear before, after the content, or in both places? =
 
-To set where the favorites icon will appear you should use the `lb_enjoyed_location_icon` filter and return a string with the before, after, or both values.
+To set where the favorites icon will appear you should use the `lb_favorite_location_icon` filter and return a string with the before, after, or both values.
 
 Example to display before content:
 
 ```php
-add_filter( 'lb_enjoyed_location_icon', 'callback' );
+add_filter( 'lb_favorite_location_icon', 'callback' );
 function callback() {
 	return 'before';
 }
@@ -21,12 +21,12 @@ function callback() {
 
 = How to add CSS classes to the favorite icon container? =
 
-To add new classes to the container element you must use the `lb_enjoyed_container_classes_css` filter. The callback receives an array with the default class and must return an array with the classes of the container.
+To add new classes to the container element you must use the `lb_favorite_container_classes_css` filter. The callback receives an array with the default class and must return an array with the classes of the container.
 
 Example of how to add a new class:
 
 ```php
-add_filter( 'lb_enjoyed_container_classes_css', 'callback' );
+add_filter( 'lb_favorite_container_classes_css', 'callback' );
 function callback( $class ) {
 	return array_merge( $class, array( 'new_class' ) );
 }
@@ -34,12 +34,12 @@ function callback( $class ) {
 
 = How can I change the icon? =
 
-The plugin uses [Google Icons](https://material.io/icons/), to change the icon you must use the `lb_enjoyed_icon` filter and return a string with the name of the icon.
+The plugin uses [Google Icons](https://material.io/icons/), to change the icon you must use the `lb_favorite_icon` filter and return a string with the name of the icon.
 
 Here's an example here:
 
 ```php
-add_filter( 'lb_enjoyed_icon', 'callback' );
+add_filter( 'lb_favorite_icon', 'callback' );
 function callback( $class ) {
 	return 'favorite';
 }
