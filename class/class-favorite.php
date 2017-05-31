@@ -96,4 +96,14 @@ class Favorite {
 	public static function convert_cookie_for_array( $cookie_lb_enjoyed ) {
 		return explode( ',', $cookie_lb_enjoyed );
 	}
+
+	/**
+	 * Convert array to cookie
+	 *
+	 * @param array $array_lb_enjoyed Array with ids of favorite posts
+	 * @return string Text with ids of favorite posts
+	 */
+	public static function convert_array_for_cookie( $array_lb_enjoyed ) {
+		return implode( ',', $array_lb_enjoyed );
+	}
 } // end class LB_Enjoyed_Favorite();
