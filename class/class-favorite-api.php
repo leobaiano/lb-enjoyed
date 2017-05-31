@@ -15,9 +15,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Favorite_API extends Favorite {
 	/**
+	 * Return Data
+	 *
+	 * @param array $data
+	 * @return json
+	 */
+	private function return_data( $data ) {
+		@header( 'Content-Type: application/json' );
+		wp_send_json( $data );
+	}
+
+	/**
 	 * save_or_remove_favorites
 	 */
 	public function save_or_remove_favorite() {
+		$response = array();
+
 		// Get favorites list in cookie
 		$favorites = self::get_favorites();
 
@@ -27,6 +40,9 @@ class Favorite_API extends Favorite {
 		// Checks if a list of favorites already exists, if it does not create with the submitted ID
 		if ( empty( $favorites ) ) {
 			$favorites = $post_id;
+
+			// Prepare the data for return
+			$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
 		} else { // Favorite list already exists
 			// Convert favorites list for array
 			$array_favorites = self::convert_cookie_for_array( $favorites );
@@ -39,10 +55,17 @@ class Favorite_API extends Favorite {
 				if ( ! empty( $array_favorites ) ) {
 					$favorites = self::convert_array_for_cookie( $array_favorites );
 				}
+
+				// Prepare the data for return
+				$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully removed the list of favorites', 'lb-enjoyed' ) );
 			} else {
 				$favorites .= ',' . $post_id;
+
+				// Prepare the data for return
+				$response = array( 'stattus' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
 			}
 		}
 		self::save_cookie( $favorites );
+		return self::return_data( $response );
 	}
 } // End class Favorite_API
