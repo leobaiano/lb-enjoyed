@@ -1,0 +1,20 @@
+.lb_enjoyed_container {
+	display:block;
+	width:100%;
+	margin:10px 0;
+}
+	.lb_enjoyed_container a {
+		font-size:1rem;
+	}
+		.lb_enjoyed_container a:hover {
+			text-decoration:none;
+		}
+	.lb_enjoyed_container a i {
+		color:gray;
+		font-size: 1.8rem;
+		vertical-align: middle;
+	}
+	.lb_enjoyed_container a:hover i,
+	.lb_enjoyed_container a.active i {
+		color:#f1c40f;
+	}

@@ -19,6 +19,7 @@ class Favorite {
 	 */
 	public static function hook_insert_favorite_icon_in_post_content( $content ) {
 		$favorite_content = '';
+		$favorite_icon = apply_filters( 'lb_enjoyed_icon', 'grade' );
 		$favorite_position = apply_filters( 'lb_enjoyed_location_icon', 'after' );
 		$css_class = apply_filters( 'lb_enjoyed_container_classes_css', array( 'lb_enjoyed_container' ) );
 		$css_class = implode( ' ', $css_class );
@@ -29,7 +30,7 @@ class Favorite {
 
 		$favorite_content .= '<div class="' . $css_class . '">';
 			$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '">';
-				$favorite_content .= '<i class="material-icons">grade</i>';
+				$favorite_content .= '<i class="material-icons">' . $favorite_icon . '</i> ' . __( 'Favorite', 'lb-enjoyed' );
 			$favorite_content .= '</a>';
 		$favorite_content .= '</div>';
 
