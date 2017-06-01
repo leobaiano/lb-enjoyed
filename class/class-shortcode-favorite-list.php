@@ -14,32 +14,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Shortcode_Favorite_List {
-
-	/**
-	 * Favorite list.
-	 *
-	 * @var array $favorites
-	 */
-	protected static $favorites;
-
-	public function __construct() {
-		// Get Favorites
-		self::$favorites = self::get_favorite_list();
-	}
-
-	public static function ShowOfFavorites() {
+	public static function show_shortcode_favorite_list() {
 		$css_class = apply_filters( 'lb_favorite_shortcode_classes_css', array( 'lb_favorite_shortcode_container' ) );
 		$css_class = implode( ' ', $css_class );
+		$view = '';
+
+		$favorites = self::get_favorite_list();
 
 		$view .= '<ul class="' . $css_class . '">';
-			if ( ! empty( self::$favorites ) ) {
-        		foreach ( self::$favorites as $favorite ) {
-        			echo '<li class="post-id-' . $favorite['post_id'] .  '"><a href="' . $favorite['post_link'] . '" title="' . $favorite['post_title'] . '">' . $favorite['post_title'] . '</li>';
+			if ( ! empty( $favorites ) ) {
+        		foreach ( $favorites as $favorite ) {
+        			$view .= '<li class="post-id-' . $favorite['post_id'] .  '"><a href="' . $favorite['post_link'] . '" title="' . $favorite['post_title'] . '">' . $favorite['post_title'] . '</li>';
         		}
         	} else {
-        		echo '<li>' . __( 'You do not have any posts added to favorites.', 'lb-enjoyed' ) . '</li>';
+        		$view .= '<li>' . __( 'You do not have any posts added to favorites.', 'lb-enjoyed' ) . '</li>';
         	}
 		$view .= "</ul>";
+		return $view;
 	}
 
 	/**

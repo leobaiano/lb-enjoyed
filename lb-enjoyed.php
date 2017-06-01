@@ -70,6 +70,8 @@ class LB_Enjoyed {
 		add_action( 'wp_ajax_nopriv_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
 		add_action( 'wp_ajax_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
 
+		add_shortcode( 'lb-favorite-list', array( '\LBEnjoyed\Shortcode_Favorite_List', 'show_shortcode_favorite_list' ) );
+
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
@@ -122,7 +124,7 @@ class LB_Enjoyed {
 	public function includes() {
 		include_once( 'class/class-favorite.php' );
 		include_once( 'class/class-favorite-api.php' );
-		include_once( 'class/class-shortcode-list.php' );
+		include_once( 'class/class-shortcode-favorite-list.php' );
 	}
 
 } // end class LB_Enjoyed();
