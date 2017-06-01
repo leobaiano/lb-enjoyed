@@ -98,8 +98,24 @@ class Favorite_API extends Favorite {
 
 	/**
 	 * Get Favorites
+	 *
+	 * @return Return array with favorite list or false
 	 */
-	public static function get_favorites_list() {
-		$favorites = self::get_favorites();
+	public static function get_favorite_list() {
+		$id_posts_favorites = self::get_favorites();
+		if ( ! empty( $id_posts_favorites ) ) {
+			$favorite_list = array();
+			foreach( $id_posts_favorites as $post_id ) {
+				$post_favorite = array(
+										'post_id'		=> $post_id,
+										'post_title'	=> get_the_title( $post_id ),
+										'post_link'		=> get_the_permalink( $post_id )
+									);
+				$favorite_list[] = apply_filters( 'lb_enjoyed_favorite_list', $post_favorite );
+			}
+			return $favorite_list();
+		} else {
+			return false;
+		}
 	}
 } // End class Favorite_API

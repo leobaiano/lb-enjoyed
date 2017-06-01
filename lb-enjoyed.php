@@ -66,6 +66,10 @@ class LB_Enjoyed {
 		add_action( 'wp_ajax_nopriv_remove_post_in_favorite_list', array('\LBEnjoyed\Favorite_API', 'remove_post_in_favorite_list' ) );
 		add_action( 'wp_ajax_remove_post_in_favorite_list', array('\LBEnjoyed\Favorite_API', 'remove_post_in_favorite_list' ) );
 
+		// Get favorite list via AJAX
+		add_action( 'wp_ajax_nopriv_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
+		add_action( 'wp_ajax_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
+
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
