@@ -122,6 +122,7 @@ class LB_Enjoyed {
 	public function includes() {
 		include_once( 'class/class-favorite.php' );
 		include_once( 'class/class-favorite-api.php' );
+		include_once( 'class/class-shortcode-list.php' );
 	}
 
 } // end class LB_Enjoyed();
