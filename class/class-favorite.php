@@ -32,7 +32,7 @@ class Favorite {
 
 		// Block with the content of the favorite icon
 		$favorite_content .= '<div class="' . $css_class . '">';
-			if ( self::chek_if_post_is_favorite( get_the_ID(), self::get_favorites() ) ) {
+			if ( ! is_bool( self::chek_if_post_is_favorite( get_the_ID(), self::get_favorites() ) ) ) {
 				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" class="active" data-post-id="' . get_the_ID() . '">';
 			} else {
 				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" data-post-id="' . get_the_ID() . '">';
@@ -68,9 +68,9 @@ class Favorite {
 	 */
 	public static function chek_if_post_is_favorite( $post_id, $favorites ) {
 		if ( ! empty( $post_id ) && ! empty ( $favorites ) ) {
-			$exist = array_search( $post_id, $favorites );
-			if ( ! is_bool( $exist ) ) {
-				return true;
+			$position = array_search( $post_id, $favorites );
+			if ( ! is_bool( $position ) ) {
+				return $position;
 			} else {
 				return false;
 			}
@@ -102,7 +102,7 @@ class Favorite {
 	 * @since  0.1.0
 	 */
 	public static function convert_cookie_for_array( $cookie_lb_enjoyed ) {
-		return explode( ',', $cookie_lb_enjoyed );
+		return explode( '-', $cookie_lb_enjoyed );
 	}
 
 	/**
@@ -112,7 +112,7 @@ class Favorite {
 	 * @return string Text with ids of favorite posts
 	 */
 	public static function convert_array_for_cookie( $array_lb_enjoyed ) {
-		return implode( ',', $array_lb_enjoyed );
+		return implode( '-', $array_lb_enjoyed );
 	}
 
 	/**
