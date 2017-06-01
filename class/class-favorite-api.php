@@ -121,9 +121,9 @@ class Favorite_API extends Favorite {
 									);
 				$favorite_list[] = apply_filters( 'lb_enjoyed_favorite_list', $post_favorite );
 			}
-			return $favorite_list();
+			return self::return_data( $favorite_list );
 		} else {
-			return false;
+			return self::return_data( array( 'status' => 'empty' ) );
 		}
 	}
 } // End class Favorite_API

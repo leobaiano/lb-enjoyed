@@ -59,11 +59,41 @@
 		}
 
 		/**
+		 * Updates favorites list in Widget
+		 */
+		function update_favorite_list_in_widget_and_short_code() {
+			$.ajax({
+				type: "POST",
+				url: ajax_url,
+				data: {
+						"action": 	"get_favorite_list",
+					},
+				success: function ( response ) {
+					var html = '';
+					if ( ! response.status && response.status !== 'empty' ) {
+						jQuery.each(response, function( key, value ){
+							html += '<li class="post-id-' + value.post_id + '"><a href="' + value.post_link+ '" title="' + value.post_title + '">' + value.post_title + '</li>';
+						});
+					} else {
+						html = '<li>You do not have any posts added to favorites.</li>';
+					}
+					$( '.lb_favorite_widget_container' ).html( html );
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					console.log( textStatus, errorThrown );
+				}
+			});
+		}
+
+		/**
 		 * Action when inactive favorite icon receives a click
 		 */
 		$( document ).on( 'click', '.lb_favorite_container .inactive', function() {
 			const post_id = $( this ).data( 'post-id' );
 			add_post_in_favorite_list( post_id );
+			setTimeout(function(){
+				update_favorite_list_in_widget_and_short_code();
+			}, 1000);
 		});
 
 		/**
@@ -72,6 +102,9 @@
 		$( document ).on( 'click', '.lb_favorite_container .active', function() {
 			const post_id = $( this ).data( 'post-id' );
 			remove_post_in_favorite_list( post_id );
+			setTimeout(function(){
+				update_favorite_list_in_widget_and_short_code();
+			}, 1000);
 		});
 	});
 })(jQuery);

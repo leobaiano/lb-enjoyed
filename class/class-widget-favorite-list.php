@@ -102,18 +102,21 @@ class Widget_Favorite_List extends WP_Widget {
 			return false;
 		}
 
-		$id_posts_favorites = explode( '-', $cookie_lb_enjoyed );
-		if ( ! empty( $id_posts_favorites ) ) {
-			$favorite_list = array();
-			foreach( $id_posts_favorites as $post_id ) {
-				$post_favorite = array(
-										'post_id'		=> $post_id,
-										'post_title'	=> get_the_title( $post_id ),
-										'post_link'		=> get_the_permalink( $post_id )
-									);
-				$favorite_list[] = apply_filters( 'lb_enjoyed_favorite_list', $post_favorite );
+		if ( isset( $_COOKIE['lb-enjoyed'] ) && ! empty( $_COOKIE['lb-enjoyed'] ) ) {
+			$id_posts_favorites = explode( '-', $_COOKIE['lb-enjoyed'] );
+			if ( ! empty( $id_posts_favorites ) ) {
+				$favorite_list = array();
+				foreach( $id_posts_favorites as $post_id ) {
+					$post_favorite = array(
+											'post_id'		=> $post_id,
+											'post_title'	=> get_the_title( $post_id ),
+											'post_link'		=> get_the_permalink( $post_id )
+										);
+					$favorite_list[] = apply_filters( 'lb_enjoyed_favorite_list', $post_favorite );
+				}
+				return $favorite_list;
 			}
-			return $favorite_list();
+			return false;
 		} else {
 			return false;
 		}
