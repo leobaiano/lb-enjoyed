@@ -5,31 +5,73 @@
 		var home_url = data.home_url;
 
 		/**
-		 * Add or remove post in favorite list
+		 * Add post in favorite list
+		 *
+		 * @param int post_id Post ID
 		 */
-		$( '.lb_favorite_container a' ).on( 'click', function() {
-			const post_id = $( this ).data( 'post-id' );
-
+		function add_post_in_favorite_list( post_id ) {
 			$.ajax({
 				type: "POST",
 				url: ajax_url,
 				data: {
-						"action": 	"add_or_remove_post_in_favorite_list",
+						"action": 	"add_post_in_favorite_list",
 						"post_id": 	post_id
 					},
 				success: function ( response ) {
 					if ( response.status == 'add' ) {
-						console.log( 'add: ' + response.status + ' - ' + post_id );
 						$( 'a[data-post-id="' + post_id + '"]' ).addClass( 'active' );
+						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'inactive' );
 					} else {
-						console.log( 'remove: ' + response.status + ' - ' + post_id );
-						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'active' );
+						console.log( response.status ': ' + response.message );
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
 					console.log( textStatus, errorThrown );
 				}
 			});
-		});
+		}
+
+		/**
+		 * Remove post in favorite list
+		 *
+		 * @param int post_id Post ID
+		 */
+		function remove_post_in_favorite_list( post_id ) {
+			$.ajax({
+				type: "POST",
+				url: ajax_url,
+				data: {
+						"action": 	"remove_post_in_favorite_list",
+						"post_id": 	post_id
+					},
+				success: function ( response ) {
+					if ( response.status == 'remove' ) {
+						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'active' );
+						$( 'a[data-post-id="' + post_id + '"]' ).addClass( 'inactive' );
+					} else {
+						console.log( response.status ': ' + response.message );
+					}
+				},
+				error: function( jqXHR, textStatus, errorThrown ) {
+					console.log( textStatus, errorThrown );
+				}
+			});
+		}
+
+		/**
+		 * Action when active favorite icon receives a click
+		 */
+		$( '.lb_favorite_container a.active' ).on( 'click', function() {
+			const post_id = $( this ).data( 'post-id' );
+			add_post_in_favorite_list( post_id );
+		}
+
+		/**
+		 * Action when inactive favorite icon receives a click
+		 */
+		$( '.lb_favorite_container a.inactive' ).on( 'click', function() {
+			const post_id = $( this ).data( 'post-id' );
+			remove_post_in_favorite_list( post_id );
+		}
 	});
 })(jQuery);
