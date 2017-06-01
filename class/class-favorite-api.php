@@ -39,23 +39,31 @@ class Favorite_API extends Favorite {
 
 		// Checks if a list of favorites already exists, if it does not create with the submitted ID
 		if ( empty( $favorites ) ) {
-			$favorites = array( $post_id );
+			$favorites = $post_id;
 
 			// Prepare the data for return
 			$response = array( 'status' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );
 		} else { // Favorite list already exists
+
+			write_log( $favorites );
+
+			// Convert favorites list for array
+			$array_favorites = self::convert_cookie_for_array( $favorites );
 
 			// Checks if the submitted post ID is already in the favorites list
 			// If it appears it will be removed
 			// If not, it will be included
 			$is_favorite = self::chek_if_post_is_favorite( $post_id, $favorites );
 			if ( $is_favorite ) {
-				unset( $favorites[$is_favorite] );
+				unset( $array_favorites[$is_favorite] );
+				if ( ! empty( $array_favorites ) ) {
+					$favorites = self::convert_array_for_cookie( $array_favorites );
+				}
 
 				// Prepare the data for return
 				$response = array( 'status' => 'remove', 'message' => __( 'Post successfully removed the list of favorites', 'lb-enjoyed' ) );
 			} else {
-				$favorites[] = $post_id;
+				$favorites .= ',' . $post_id;
 
 				// Prepare the data for return
 				$response = array( 'status' => 'add', 'message' => __( 'Post successfully added to favorites list', 'lb-enjoyed' ) );

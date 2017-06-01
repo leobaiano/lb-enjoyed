@@ -90,20 +90,42 @@ class Favorite {
 			return false;
 		}
 
-		return $_COOKIE['lb-enjoyed'];
+		return self::convert_cookie_for_array( $_COOKIE['lb-enjoyed'] );
+	}
+
+	/**
+	 * Convert Cookie to array
+	 *
+	 * @param string $cookie_lb_enjoyed Cookie with ids of favorite posts
+	 * @return array Array with ids of favorite posts
+	 *
+	 * @since  0.1.0
+	 */
+	public static function convert_cookie_for_array( $cookie_lb_enjoyed ) {
+		return explode( ',', $cookie_lb_enjoyed );
+	}
+
+	/**
+	 * Convert array to cookie
+	 *
+	 * @param array $array_lb_enjoyed Array with ids of favorite posts
+	 * @return string Text with ids of favorite posts
+	 */
+	public static function convert_array_for_cookie( $array_lb_enjoyed ) {
+		return implode( ',', $array_lb_enjoyed );
 	}
 
 	/**
 	 * Save Cookie
 	 *
-	 * @param array $favorite_list Array with id of the favorite posts separated by commas
+	 * @param string $favorite_list String with id of the favorite posts separated by commas
 	 *
 	 * @since  0.1.0
 	 */
-	public static function save_cookie( $favorite_list ) {
+	public static function save_cookie( $text ) {
 		if ( isset( $_COOKIE['lb-enjoyed'] ) ) {
 			unset( $_COOKIE['lb-enjoyed'] );
 		}
-		@setcookie( 'lb-enjoyed', $favorite_list, time() + 3600, "/" );
+		@setcookie( 'lb-enjoyed', $text, time() + 3600, "/" );
 	}
 } // end class LB_Enjoyed_Favorite();
