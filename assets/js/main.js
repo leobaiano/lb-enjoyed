@@ -78,6 +78,7 @@
 						html = '<li>You do not have any posts added to favorites.</li>';
 					}
 					$( '.lb_favorite_widget_container' ).html( html );
+					$( '.lb_favorite_shortcode_container' ).html( html );
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
 					console.log( textStatus, errorThrown );
