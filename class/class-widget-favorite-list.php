@@ -28,7 +28,6 @@ class Widget_Favorite_List extends WP_Widget {
 		parent::__construct( 'Widget_Favorite_List', __( 'Favorite List', 'lb-enjoyed' ), $widget_ops );
 
 		// Get Favorites
-		// self::$favorites = array( array( 'post_id' => 1, 'post_title' => 'title', 'post_link' => 'http://teste.com' ) );
 		self::$favorites = self::get_favorite_list();
 	}
 
