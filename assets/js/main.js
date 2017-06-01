@@ -18,10 +18,12 @@
 						"post_id": 	post_id
 					},
 				success: function ( response ) {
-					if ( response.status == 'add ' ) {
-						$( '.lb_favorite_container a' ).addClass( 'active' );
+					if ( response.status == 'add' ) {
+						console.log( 'add: ' + response.status + ' - ' + post_id );
+						$( 'a[data-post-id="' + post_id + '"]' ).addClass( 'active' );
 					} else {
-						$( '.lb_favorite_container a' ).removeClass( 'active' );
+						console.log( 'remove: ' + response.status + ' - ' + post_id );
+						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'active' );
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
