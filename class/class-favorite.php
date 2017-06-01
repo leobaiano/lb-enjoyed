@@ -59,7 +59,7 @@ class Favorite {
 			if ( ! is_bool( self::chek_if_post_is_favorite( get_the_ID(), self::get_favorites() ) ) ) {
 				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" class="active" data-post-id="' . get_the_ID() . '">';
 			} else {
-				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" data-post-id="' . get_the_ID() . '">';
+				$favorite_content .= '<a href="javascript:;" title="' . __( 'Favorite post', 'lb-enjoyed' ) . '" class="inactive" data-post-id="' . get_the_ID() . '">';
 			}
 				$favorite_content .= '<i class="material-icons">' . $favorite_icon . '</i> ' . __( 'Favorite', 'lb-enjoyed' );
 			$favorite_content .= '</a>';

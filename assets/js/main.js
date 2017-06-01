@@ -22,7 +22,7 @@
 						$( 'a[data-post-id="' + post_id + '"]' ).addClass( 'active' );
 						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'inactive' );
 					} else {
-						console.log( response.status ': ' + response.message );
+						console.log( response.status + ': ' + response.message );
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
@@ -49,7 +49,7 @@
 						$( 'a[data-post-id="' + post_id + '"]' ).removeClass( 'active' );
 						$( 'a[data-post-id="' + post_id + '"]' ).addClass( 'inactive' );
 					} else {
-						console.log( response.status ': ' + response.message );
+						console.log( response.status + ': ' + response.message );
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
@@ -59,19 +59,19 @@
 		}
 
 		/**
-		 * Action when active favorite icon receives a click
-		 */
-		$( '.lb_favorite_container a.active' ).on( 'click', function() {
-			const post_id = $( this ).data( 'post-id' );
-			add_post_in_favorite_list( post_id );
-		}
-
-		/**
 		 * Action when inactive favorite icon receives a click
 		 */
-		$( '.lb_favorite_container a.inactive' ).on( 'click', function() {
+		$( document ).on( 'click', '.lb_favorite_container .inactive', function() {
+			const post_id = $( this ).data( 'post-id' );
+			add_post_in_favorite_list( post_id );
+		});
+
+		/**
+		 * Action when active favorite icon receives a click
+		 */
+		$( document ).on( 'click', '.lb_favorite_container .active', function() {
 			const post_id = $( this ).data( 'post-id' );
 			remove_post_in_favorite_list( post_id );
-		}
+		});
 	});
 })(jQuery);
