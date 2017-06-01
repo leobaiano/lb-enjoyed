@@ -58,6 +58,10 @@ class LB_Enjoyed {
 		// Hook: Filter the_content for add favorite icon in post content
 		add_filter( 'the_content', array('\LBEnjoyed\Favorite', 'hook_insert_favorite_icon_in_post_content' ) );
 
+		// Add or remove post in favorite list via AJAX
+		add_action( 'wp_ajax_nopriv_save_or_remove_favorite', array('\LBEnjoyed\Favorite_API', 'save_or_remove_favorite' ) );
+		add_action( 'wp_ajax_save_or_remove_favorite', array('\LBEnjoyed\Favorite_API', 'save_or_remove_favorite' ) );
+
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
@@ -108,10 +112,8 @@ class LB_Enjoyed {
 	 * Include required core files used in admin and on the frontend.
 	 */
 	public function includes() {
-		$class_directory = plugin_dir_path( __FILE__ ) . "/class/";
-		foreach ( glob( $class_directory . "*.php" ) as $filename ){
-			include_once $filename;
-		}
+		include_once( 'class/class-favorite.php' );
+		include_once( 'class/class-favorite-api.php' );
 	}
 
 } // end class LB_Enjoyed();

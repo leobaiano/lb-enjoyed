@@ -14,14 +14,14 @@
 				type: "POST",
 				url: ajax_url,
 				data: {
-						"action": 	"add_or_remove_favorite",
+						"action": 	"save_or_remove_favorite",
 						"post_id": 	post_id
 					},
 				success: function ( response ) {
-					if ( responde.status == 'add ' ) {
-						$( this ).removeClass( 'active' );
+					if ( response.status == 'add ' ) {
+						$( '.lb_favorite_container a' ).addClass( 'active' );
 					} else {
-						$( this ).addClass( 'active' );
+						$( '.lb_favorite_container a' ).removeClass( 'active' );
 					}
 				},
 				error: function( jqXHR, textStatus, errorThrown ) {
