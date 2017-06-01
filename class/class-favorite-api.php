@@ -26,9 +26,9 @@ class Favorite_API extends Favorite {
 	}
 
 	/**
-	 * save_or_remove_favorites
+	 * Add or remove post id in favorite list
 	 */
-	public static function save_or_remove_favorite() {
+	public static function add_or_remove_post_in_favorite_list() {
 		$response = array();
 
 		// Get favorites list in cookie

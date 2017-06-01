@@ -14,7 +14,7 @@
 				type: "POST",
 				url: ajax_url,
 				data: {
-						"action": 	"save_or_remove_favorite",
+						"action": 	"add_or_remove_post_in_favorite_list",
 						"post_id": 	post_id
 					},
 				success: function ( response ) {

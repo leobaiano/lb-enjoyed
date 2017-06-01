@@ -59,8 +59,8 @@ class LB_Enjoyed {
 		add_filter( 'the_content', array('\LBEnjoyed\Favorite', 'hook_insert_favorite_icon_in_post_content' ) );
 
 		// Add or remove post in favorite list via AJAX
-		add_action( 'wp_ajax_nopriv_save_or_remove_favorite', array('\LBEnjoyed\Favorite_API', 'save_or_remove_favorite' ) );
-		add_action( 'wp_ajax_save_or_remove_favorite', array('\LBEnjoyed\Favorite_API', 'save_or_remove_favorite' ) );
+		add_action( 'wp_ajax_nopriv_add_or_remove_post_in_favorite_list', array('\LBEnjoyed\Favorite_API', 'add_or_remove_post_in_favorite_list' ) );
+		add_action( 'wp_ajax_add_or_remove_post_in_favorite_list', array('\LBEnjoyed\Favorite_API', 'add_or_remove_post_in_favorite_list' ) );
 
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
