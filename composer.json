@@ -1,0 +1,24 @@
+{
+    "name": "leobaiano/lb-enjoyed",
+    "type": "library",
+    "description": "WordPress Plguin for Favorites Posts",
+    "keywords": ["enjoyed", "enjoyed post", "favorite", "favorite posts", "WordPress", "Plugin WordPress"],
+    "homepage": "https://github.com/leobaiano",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leo Baiano",
+            "email": "ljunior2005@gmail.com",
+            "homepage": "https://github.com/leobaiano"
+        }
+
+    ],
+    "require": {
+        "php": ">=5.3.9"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "phpunit/phpunit": "^5.6"
+    }
+}
