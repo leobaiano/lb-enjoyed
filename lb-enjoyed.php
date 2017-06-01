@@ -70,9 +70,6 @@ class LB_Enjoyed {
 		add_action( 'wp_ajax_nopriv_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
 		add_action( 'wp_ajax_get_favorite_list', array('\LBEnjoyed\Favorite_API', 'get_favorite_list' ) );
 
-		// Add Widget Favorite List
-		add_action( 'widgets_init', array( '\LBEnjoyed\Widget_Favorite_List', 'register_widget' ) );
-
 		// Hook so other developers can extend the plugin
 		do_action( 'lb_enjoyed_loaded' );
 	}
@@ -125,8 +122,15 @@ class LB_Enjoyed {
 	public function includes() {
 		include_once( 'class/class-favorite.php' );
 		include_once( 'class/class-favorite-api.php' );
-		include_once( 'class/class-widget-favorite-list.php' );
 	}
 
 } // end class LB_Enjoyed();
 add_action( 'plugins_loaded', array( '\LBEnjoyed\LB_Enjoyed', 'get_instance' ), 0 );
+
+/**
+ * Register Widget Favorite List
+ */
+include_once( 'class/class-widget-favorite-list.php' );
+add_action( 'widgets_init', function(){
+	register_widget( 'Widget_Favorite_List' );
+});
