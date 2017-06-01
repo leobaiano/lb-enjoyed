@@ -19,6 +19,8 @@ class Favorite_API extends Favorite {
 	 *
 	 * @param array $data
 	 * @return json
+	 *
+	 * @since  0.1.0
 	 */
 	private static function return_data( $data ) {
 		@header( 'Content-Type: application/json' );
@@ -27,6 +29,8 @@ class Favorite_API extends Favorite {
 
 	/**
 	 * Add post in favorite list
+	 *
+	 * @since  0.1.0
 	 */
 	public static function add_post_in_favorite_list() {
 		$response = array();
@@ -63,6 +67,8 @@ class Favorite_API extends Favorite {
 
 	/**
 	 * Remove post in favorite list
+	 *
+	 * @since  0.1.0
 	 */
 	public static function remove_post_in_favorite_list() {
 		$response = array();
@@ -100,6 +106,8 @@ class Favorite_API extends Favorite {
 	 * Get Favorites
 	 *
 	 * @return Return array with favorite list or false
+	 *
+	 * @since  0.1.0
 	 */
 	public static function get_favorite_list() {
 		$id_posts_favorites = self::get_favorites();
